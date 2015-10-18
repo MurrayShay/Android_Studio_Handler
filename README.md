@@ -28,6 +28,10 @@ Android Handler 執行緒教學
 >> sendMessage方法:發送一個Message到Handler所在執行緒中的MessageQueue中，當Message備取出時，會由Handler的handleMessage()方法處理。    
 >> Post方法:發送一個runnable物件到MessageQueue中，當runnable物件被取出時，會在Handler所在的執行緒中備執行。
 
+架構圖
+---------------------------
+ ![github](https://github.com/MurrayShay/Android_Studio_Handler/blob/master/systemChat.PNG "github")  
+
 * * * *
 相關 API 解釋
 -------------------------------
