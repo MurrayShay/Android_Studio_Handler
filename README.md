@@ -33,14 +33,42 @@ Android Handler 執行緒教學
 -------------------------------
 ####★Message 類別
 ###### Message 類別的欄位:
+``` JAVA
        int arg1 //欲傳遞的整數值1 
        int arg2 //欲傳遞的整數值2   
        Object obj //欲傳遞的物件
        Messenger replyTo //提供接收端回覆的Messenger
        int what //自行定義的訊息碼，可供Handler判斷訊息用
+```
 ####★Handler 類別
 ###### 鍵構子
+``` JAVA
        Handler() //目前Thread的looper
        Handler(Looper looper) //指定looper
+```
 ###### 方法**(資料傳遞)**
-       
+``` JAVA
+       void handlerMessage(Message msg) //處理looper所管理的MessageQueue
+       boolean sendMessage(Message msg)
+       boolean sendMessageAtFrontOfQueue(Message msg)
+       boolean sendMessageAtTime(Message msg, long uptimeMillis)
+       boolean sendMessageDelayed(Message msg, long delayMillis)
+       void removeMessages(int what) //將MessageQueue中的Message.what與參數what相符的訊息移除
+```
+###### 方法**(方法的傳遞)**
+``` JAVA
+       boolean post(Runnable r)
+       boolean postAtFrontOfQueue(Runnable r) //將Runnable物件r放入MessageQueue的最前方
+       boolean postAtTime(Runnable r, Object token, long uptimeMillis)
+       boolean postAtTime(Runnable r, long uptimeMillis) //將Runnable物件r放入MessageQueue中,當時間到達參數uptimeMillis指定時間時，此Runnable物件會被執行
+       boolean postDelayed(Runnable r, long delayMillis) //將Runnable物件r放入MessageQueue中,延遲參數delayMillis指定時間時，此Runnable物件會被執行
+       void removeCallbacks(Runnable r) //將MessageQueue中的Runnable物件r移除
+```
+###### 方法*(從loopper的MessageQueue取得一個Message Object)*
+``` JAVA
+       Message obtainMessage() //取得MessageQueue中，可用的Message物件
+       Message obtainMessage(int what, int arg1, int arg2) //參數arg1，設定Message物件中的arg1屬性值
+       Message obtainMessage(int what, int arg1, int arg2,Object obj) //參數arg2，設定Message物件中的arg2屬性值
+       Message obtainMessage(int what) //參數what，設定Message物件中的what屬性值
+       Message obtainMessage(int what, Object obj) //參數obj，設定Message物件中的obj屬性值
+````
